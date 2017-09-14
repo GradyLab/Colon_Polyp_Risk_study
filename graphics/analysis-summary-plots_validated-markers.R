@@ -1,13 +1,16 @@
-# ievora graphics
+#=====================================================
+# ievora graphics: analysis summary multipanel plots
+#=====================================================
+# Author: Sean Maden
 
-#
+#======================================
+# four markers validated on EPIC array
+#======================================
 
+# interesting markers list
+markersoi <- c("cg00727675","cg06422261","cg24148882","cg11291003","cg11111460","cg19008720","cg19980151","cg03756778","cg12052265")
 
-
-#==================================
-# four markers validated in epic
 valmarkers <- intersect(roc.epic$cpgid,old.markers)
-
 
 # preamble = colors
 gx <- gdisc; gx <- gx[,order(gx$Risk_Group.index)] 
