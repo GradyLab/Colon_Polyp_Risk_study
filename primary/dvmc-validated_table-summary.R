@@ -30,8 +30,7 @@ summarydf <- data.frame(dvmc.id=x$cpgid,
                         refgene.name=ad$UCSC_RefGene_Name,
                         chr=ad$chr,
                         pos=ad$pos,
-                        strand=ad$strand)
+                        strand=ad$strand,
+                        stringsAsFactors = FALSE)
 
 write.csv(summarydf,file="dvmc-validated_cgsummaries.csv")
-
-###
