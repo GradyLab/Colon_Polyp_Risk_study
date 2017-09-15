@@ -16,7 +16,7 @@ mdsPlot(getBeta(gtcga),
 
 # exclude tumor sampels with matched normal tissues
 gtcgatest <- gtcga[,!(gtcga$Patient_ID %in% gtcga[,gtcga$sampletype=="11"]$Patient_ID &
-                     gtcga$sampletype=="01")] 
+                        gtcga$sampletype=="01")] 
 gtcgatest <- gtcgatest[,!duplicated(gtcgatest$Patient_ID)]
 
 summary(as.data.frame(table(gtcga$Patient_ID))) # up to four patient samples
@@ -38,15 +38,15 @@ x2 <- rowMeans(getBeta(gtcgatest[,gtcgatest$sampletype=="01"]))
 hyptcg <- which(x2-x1 >=0.2)
 
 # DMP search among T-hypermethylated CpGs that are also risk markers from discovery
-gtcgatest <- gtcgatest[intersect(names(hyptcg),rownames(rlsig.dvmc.df)),] 
+# ievora.ddf a df of DVMCs from testing all HM450k arrays
+gtcgatest <- gtcgatest[intersect(names(hyptcg),rownames(ievora.ddf)),] 
 dmptcga <- dmpFinder(getBeta(gtcgatest),
                      type="categorical",
                      pheno=gtcgatest$sampletype)
 
-summary(p.adjust(dmptcga$pval,method="BH")) # padj <= 2.5e-5
-dim(dmptcga) # 667 post-filter markers
+summary(p.adjust(dmptcga$pval,method="BH")) # padj < 2.5e-5
+dim(dmptcga) # 671 post-filter markers
 
-save(dmptcga,file="dvmcs-tcgadmp-postfilter-pbh05.rda")
+#save(dmptcga,file="dvmcs-tcgadmp-postfilter-pbh05.rda")
 
 ###
-
