@@ -1,4 +1,7 @@
+#====================================
 # gtcga multiplot, iEVORA analysis
+#==================================
+# Author: Sean Maden
 
 library(ggpubr);library(ggfortify)
 
